@@ -21,12 +21,15 @@
             --text-color: #333;
             --white-color: #fff;
             --hover-color: #2c5282;
+            --gray-color: #666;
+            --light-gray: #eee;
         }
 
         body {
             background-color: var(--bg-color);
             color: var(--text-color);
-            line-height: 1.6;
+            line-height: 1.8;
+            scroll-behavior: smooth;
         }
 
         /* 导航栏 */
@@ -72,10 +75,73 @@
             cursor: pointer;
         }
 
+        /* 通用板块样式 */
+        section {
+            padding: 5rem 5%;
+            scroll-margin-top: 80px;
+        }
+
+        .section-title {
+            font-size: 2.2rem;
+            color: var(--primary-color);
+            margin-bottom: 2rem;
+            position: relative;
+            text-align: center;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 3px;
+            background-color: var(--secondary-color);
+            margin: 1rem auto;
+        }
+
+        .section-desc {
+            max-width: 900px;
+            margin: 0 auto 3rem;
+            font-size: 1.1rem;
+            color: var(--gray-color);
+            text-align: center;
+        }
+
+        /* 流程线样式（业务板块专用） */
+        .process-line {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 2rem 0 4rem;
+            position: relative;
+        }
+
+        .process-line::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 10%;
+            right: 10%;
+            height: 2px;
+            background-color: var(--secondary-color);
+            transform: translateY(-50%);
+            z-index: 1;
+        }
+
+        .process-node {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background-color: var(--primary-color);
+            border: 3px solid var(--secondary-color);
+            position: relative;
+            z-index: 2;
+            margin: 0 2rem;
+        }
+
         /* 横幅Hero区 */
         .hero {
             height: 100vh;
-            background: linear-gradient(rgba(26, 54, 93, 0.8), rgba(26, 54, 93, 0.9)), 
+            background: linear-gradient(rgba(26, 54, 93, 0.85), rgba(26, 54, 93, 0.95)), 
                         url('https://picsum.photos/id/1043/1920/1080') center/cover no-repeat;
             background-blend-mode: multiply;
             color: var(--white-color);
@@ -85,12 +151,12 @@
             align-items: center;
             text-align: center;
             padding: 0 5%;
-            margin-top: 70px;
+            margin-top: 0;
         }
 
         .hero h1 {
             font-size: 3rem;
-            margin-bottom: 1rem;
+            margin-bottom: 1.5rem;
             line-height: 1.2;
         }
 
@@ -101,7 +167,7 @@
         .hero p {
             font-size: 1.2rem;
             max-width: 800px;
-            margin-bottom: 2rem;
+            margin-bottom: 2.5rem;
         }
 
         .btn {
@@ -115,47 +181,141 @@
             cursor: pointer;
             transition: background-color 0.3s;
             text-decoration: none;
+            display: inline-block;
         }
 
         .btn:hover {
             background-color: #c19e68;
         }
 
-        /* 业务板块 */
-        .services {
-            padding: 5rem 5%;
+        /* 关于我们板块 */
+        .about {
+            background-color: var(--white-color);
             text-align: center;
         }
 
-        .section-title {
-            font-size: 2.2rem;
+        .about-header {
+            font-size: 2.8rem;
             color: var(--primary-color);
-            margin-bottom: 3rem;
-            position: relative;
+            margin-bottom: 2rem;
+            font-weight: bold;
         }
 
-        .section-title::after {
-            content: '';
-            display: block;
-            width: 80px;
-            height: 3px;
-            background-color: var(--secondary-color);
-            margin: 1rem auto;
+        .about-header span {
+            color: var(--secondary-color);
         }
 
-        .services-container {
+        .about-desc {
+            max-width: 900px;
+            margin: 0 auto 3rem;
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        /* 原生计划板块 */
+        .original-plan {
+            background-color: var(--bg-color);
+            text-align: center;
+        }
+
+        .plan-container {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-top: 2rem;
+            gap: 2.5rem;
+            max-width: 1200px;
+            margin: 0 auto;
         }
 
-        .service-card {
+        .plan-card {
             background-color: var(--white-color);
             padding: 2rem;
             border-radius: 10px;
             box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            text-align: left;
+        }
+
+        .plan-card h3 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        .plan-card h3 i {
+            color: var(--secondary-color);
+            font-size: 1.8rem;
+        }
+
+        .plan-card p {
+            color: var(--gray-color);
+            margin-bottom: 1.5rem;
+            line-height: 1.7;
+        }
+
+        /* 加入我们板块 */
+        .join-us {
+            background-color: var(--white-color);
+            text-align: center;
+        }
+
+        .join-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.5rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .join-card {
+            background-color: var(--bg-color);
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            text-align: center;
+        }
+
+        .join-card i {
+            font-size: 3rem;
+            color: var(--secondary-color);
+            margin-bottom: 1.5rem;
+        }
+
+        .join-card h3 {
+            color: var(--primary-color);
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .join-card p {
+            color: var(--gray-color);
+            margin-bottom: 1.5rem;
+            line-height: 1.7;
+        }
+
+        /* 业务板块（核心：大众共创→数字转化→平台发布→落地延伸） */
+        .services {
+            text-align: center;
+            background-color: var(--white-color);
+        }
+
+        .services-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .service-card {
+            background-color: var(--bg-color);
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
             transition: transform 0.3s;
+            text-align: left;
         }
 
         .service-card:hover {
@@ -166,45 +326,304 @@
             color: var(--primary-color);
             margin-bottom: 1rem;
             font-size: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        .service-card h3 i {
+            color: var(--secondary-color);
+            font-size: 1.8rem;
         }
 
         .service-card p {
-            color: #666;
+            color: var(--gray-color);
             margin-bottom: 1.5rem;
+            line-height: 1.7;
         }
 
-        .service-icon {
-            font-size: 2.5rem;
-            color: var(--secondary-color);
-            margin-bottom: 1rem;
-        }
-
-        /* 原声计划板块 */
-        .project {
-            padding: 5rem 5%;
+        .service-step {
+            display: inline-block;
+            width: 30px;
+            height: 30px;
+            line-height: 30px;
+            border-radius: 50%;
             background-color: var(--primary-color);
             color: var(--white-color);
             text-align: center;
+            margin-right: 0.8rem;
+            font-weight: bold;
         }
 
-        .project .section-title {
+        /* 拓展模块1：原语·光影集（主流平台视频合集） */
+        .original-light {
+            background-color: var(--bg-color);
+            padding-bottom: 6rem;
+        }
+
+        .module-title {
+            font-size: 2.2rem;
+            color: var(--primary-color);
+            margin-bottom: 2rem;
+            position: relative;
+            text-align: center;
+        }
+
+        .module-title::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 3px;
+            background-color: var(--secondary-color);
+            margin: 1rem auto;
+        }
+
+        .video-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .video-card {
+            background-color: var(--white-color);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+            transition: transform 0.3s;
+        }
+
+        .video-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .video-img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+        }
+
+        .video-info {
+            padding: 1.2rem;
+        }
+
+        .video-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--primary-color);
+            margin-bottom: 0.8rem;
+        }
+
+        .video-desc {
+            font-size: 0.95rem;
+            color: var(--gray-color);
+            line-height: 1.6;
+        }
+
+        /* 拓展模块2：原语·知享会（论坛+公益课堂） */
+        .original-share {
+            background-color: var(--white-color);
+            padding-bottom: 6rem;
+        }
+
+        .forum-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.5rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .forum-card {
+            background-color: var(--bg-color);
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            text-align: center;
+        }
+
+        .forum-card i {
+            font-size: 3rem;
+            color: var(--secondary-color);
+            margin-bottom: 1.5rem;
+        }
+
+        .forum-card h3 {
+            color: var(--primary-color);
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .forum-card p {
+            color: var(--gray-color);
+            margin-bottom: 1.5rem;
+            line-height: 1.7;
+        }
+
+        /* 拓展模块3：原语·乡筑记（线下乡村品牌共建） */
+        .original-build {
+            background-color: var(--bg-color);
+            padding-bottom: 6rem;
+        }
+
+        .village-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .village-card {
+            background-color: var(--white-color);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+        }
+
+        .village-img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .village-info {
+            padding: 1.5rem;
+        }
+
+        .village-title {
+            font-size: 1.3rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .village-desc {
+            color: var(--gray-color);
+            line-height: 1.7;
+            font-size: 1rem;
+        }
+
+        /* 拓展模块4：原语·风物集（非遗/文化体验+非遗产品） */
+        .original-goods {
+            background-color: var(--white-color);
+            padding-bottom: 6rem;
+            text-align: center;
+        }
+
+        .goods-categories {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .category-btn {
+            padding: 0.6rem 1.5rem;
+            border: 2px solid var(--primary-color);
+            background-color: var(--white-color);
+            color: var(--primary-color);
+            border-radius: 30px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .category-btn.active {
+            background-color: var(--primary-color);
             color: var(--white-color);
         }
 
-        .project .section-title::after {
-            background-color: var(--secondary-color);
+        .category-btn:hover {
+            background-color: var(--hover-color);
+            color: var(--white-color);
         }
 
-        .project-desc {
-            max-width: 900px;
-            margin: 0 auto 3rem;
+        .goods-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            margin-bottom: 4rem;
+        }
+
+        .goods-card {
+            background-color: var(--bg-color);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+            transition: transform 0.3s;
+        }
+
+        .goods-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .goods-img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .goods-info {
+            padding: 1.5rem;
+        }
+
+        .goods-title {
             font-size: 1.1rem;
+            color: var(--primary-color);
+            margin-bottom: 0.8rem;
+            font-weight: 600;
+        }
+
+        .goods-desc {
+            color: var(--gray-color);
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        .experience-btn {
+            width: 100%;
+            padding: 0.6rem;
+            background-color: var(--secondary-color);
+            color: var(--primary-color);
+            border: none;
+            border-radius: 5px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .experience-btn:hover {
+            background-color: #c19e68;
+        }
+
+        /* 探索更多按钮样式 */
+        .explore-more {
+            padding: 0.8rem 2.5rem;
+            background-color: transparent;
+            border: 2px solid var(--primary-color);
+            color: var(--primary-color);
+            border-radius: 30px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 1rem;
+        }
+
+        .explore-more:hover {
+            background-color: var(--primary-color);
+            color: var(--white-color);
         }
 
         /* 合作板块 */
         .contact {
-            padding: 5rem 5%;
             text-align: center;
+            background-color: var(--bg-color);
         }
 
         .contact-card {
@@ -219,11 +638,13 @@
         .contact-card h3 {
             color: var(--primary-color);
             margin-bottom: 1.5rem;
+            font-size: 1.5rem;
         }
 
         .contact-info {
             margin-bottom: 1.5rem;
             font-size: 1.1rem;
+            line-height: 1.8;
         }
 
         /* 页脚 */
@@ -236,6 +657,8 @@
 
         .footer p {
             margin-top: 1rem;
+            font-size: 0.95rem;
+            color: #e0e0e0;
         }
 
         /* 响应式适配 */
@@ -248,6 +671,18 @@
                 display: block;
             }
 
+            .mobile-nav {
+                display: flex !important;
+                flex-direction: column;
+                position: absolute;
+                top: 70px;
+                right: 5%;
+                background: var(--primary-color);
+                padding: 1rem;
+                border-radius: 5px;
+                gap: 1rem !important;
+            }
+
             .hero h1 {
                 font-size: 2rem;
             }
@@ -256,8 +691,20 @@
                 font-size: 1rem;
             }
 
-            .section-title {
+            .section-title, .module-title {
                 font-size: 1.8rem;
+            }
+
+            .about-header {
+                font-size: 2rem;
+            }
+
+            .process-line {
+                display: none;
+            }
+
+            .service-card h3, .plan-card h3, .join-card h3 {
+                font-size: 1.3rem;
             }
         }
     </style>
@@ -268,14 +715,19 @@
     <!-- 导航栏 -->
     <nav class="navbar">
         <div class="logo">东方原语</div>
-        <div class="nav-links">
+        <div class="nav-links" id="navLinks">
             <a href="#home">首页</a>
             <a href="#about">关于我们</a>
-            <a href="#services">业务板块</a>
-            <a href="#project">原声计划</a>
-            <a href="#contact">合作联系</a>
+            <a href="#plan">原生计划</a>
+            <a href="#join">加入我们</a>
+            <a href="#services">核心流程</a>
+            <a href="#light">原语·光影集</a>
+            <a href="#share">原语·知享会</a>
+            <a href="#build">原语·乡筑记</a>
+            <a href="#goods">原语·风物集</a>
+            <a href="#contact">携手同行</a>
         </div>
-        <div class="menu-toggle">
+        <div class="menu-toggle" id="menuToggle">
             <i class="fas fa-bars"></i>
         </div>
     </nav>
@@ -283,112 +735,386 @@
     <!-- 横幅Hero区 -->
     <section class="hero" id="home">
         <h1>让每一种<span>原生文化</span>，都被世界听见</h1>
-        <p>东方原语——用AI数字技术唤醒东方大地最原生的文化声音，让深山里的故事成为照亮乡村的星火</p>
-        <a href="#contact" class="btn">立即合作</a>
+        <p>我们邀您，一起把乡土故事揉进数字光影，用AI数字技术唤醒东方大地最原生的文化声音，让深山里的故事成为照亮乡村的星火，生长出温暖的模样</p>
+        <a href="#services" class="btn">走进我们的故事</a>
     </section>
 
-    <!-- 业务板块 -->
-    <section class="services" id="services">
-        <h2 class="section-title">核心业务板块</h2>
-        <div class="services-container">
-            <!-- AI数字技术 -->
-            <div class="service-card">
-                <div class="service-icon">
-                    <i class="fas fa-robot"></i>
-                </div>
-                <h3>AI数字技术</h3>
-                <p>基于AI技术实现故事内容的视频化、数字化生产，批量生成高质量短视频、数字素材，打造内容工业化生产体系</p>
-                <a href="#contact" class="btn">了解更多</a>
-            </div>
+    <!-- 关于我们板块 -->
+    <section class="about" id="about">
+        <h1 class="about-header">原来东方，<span>语众不同</span></h1>
+        <div class="about-desc">
+            <p>我们源自中国传媒大学文化产业管理学院，是7个热爱乡土文化的年轻人，因「让小众文化被看见」的初心相聚。</p>
+            <p style="margin-top: 1rem;">我们相信，每一个村寨的口述故事、每一项非遗的指尖温度，都值得被数字化留存、被更多人看见。于是我们搭建桥梁——邀大众共创原生故事，用数字技术将其化为视频、数字人内容，在主流平台传递，让文化的生命力，在山野与屏幕之间生生不息。</p>
+        </div>
+    </section>
 
-            <!-- 故事整理改编 -->
-            <div class="service-card">
-                <div class="service-icon">
-                    <i class="fas fa-book-open"></i>
-                </div>
-                <h3>故事整理改编</h3>
-                <p>深入少数民族山区收集原生故事，进行专业整理、润色与脚本化改编，保障文化真实性与传播性的平衡</p>
-                <a href="#contact" class="btn">了解更多</a>
-            </div>
+    <!-- 新增：原生计划板块 -->
+    <section class="original-plan" id="plan">
+        <h2 class="section-title">原生计划 · 让文化自然生长</h2>
+        <p class="section-desc">以原生文化为根，以数字技术为翼，以大众共创为魂，我们发起「原生计划」，让每一个平凡的文化故事，都能拥有被看见的力量</p>
 
-            <!-- 线下和外联 -->
-            <div class="service-card">
-                <div class="service-icon">
-                    <i class="fas fa-handshake"></i>
-                </div>
-                <h3>线下和外联</h3>
-                <p>对接村寨、非遗传承人、文旅机构，获取一手文化素材，建立长期合作与收益分红机制，筑牢文化资源护城河</p>
-                <a href="#contact" class="btn">了解更多</a>
+        <div class="plan-container">
+            <div class="plan-card">
+                <h3><i class="fas fa-seedling"></i> 计划初心</h3>
+                <p>不追逐流量喧嚣，不执着商业变现，只专注于原生文化的挖掘、留存与传播。我们希望通过「原生计划」，连接每一位热爱文化的人，让乡土故事被数字化记录，让非遗技艺被年轻化传播，让文化在传承中自然生长。</p>
             </div>
-
-            <!-- 平台账号运营 -->
-            <div class="service-card">
-                <div class="service-icon">
-                    <i class="fas fa-video"></i>
-                </div>
-                <h3>平台账号运营</h3>
-                <p>抖音/B站等主流平台账号矩阵运营，数据优化、流量投放、商业变现，实现文化内容的流量价值转化</p>
-                <a href="#contact" class="btn">了解更多</a>
+            <div class="plan-card">
+                <h3><i class="fas fa-project-diagram"></i> 计划内容</h3>
+                <p>整合大众共创故事、数字技术转化、主流平台传播、乡村文化共建四大板块，联动非遗传承人、文化专家、乡村讲述者与数字创作者，形成「故事采集—数字转化—传播落地」的完整文化生长链路，让每一份文化热爱都有归处。</p>
+            </div>
+            <div class="plan-card">
+                <h3><i class="fas fa-hand-holding-heart"></i> 计划愿景</h3>
+                <p>让藏在深山、隐于市井的原生文化，走出小众圈层；让每一位文化讲述者、创作者，都能成为文化传播的使者；让数字技术成为文化传承的温柔载体，让东方原生文化，在新时代焕发新的生命力。</p>
             </div>
         </div>
     </section>
 
-    <!-- 原声计划板块 -->
-    <section class="project" id="project">
-        <h2 class="section-title">东方原语 · 原声计划</h2>
-        <p class="project-desc">
-            「原声计划」是以乡村振兴、文化传承、数字共富为核心的长期文化公益+商业可持续项目。我们深入少数民族、山区、非遗村落，挖掘在地口述故事、民俗传说、非遗技艺，用AI数字技术转化为短视频、数字内容、IP资产，投放主流平台实现流量变现与品牌传播，收益反哺创作者与村落，形成文化—科技—共富闭环。
-        </p>
-        <a href="#contact" class="btn">加入我们</a>
+    <!-- 新增：加入我们板块（故事讲述者、AI制作者、商务合作） -->
+    <section class="join-us" id="join">
+        <h2 class="section-title">加入我们 · 共赴文化之约</h2>
+        <p class="section-desc">文化的生长，从来不是一个人的独行。无论你是故事的讲述者、技术的创作者，还是志同道合的合作者，我们都热切期盼你的加入</p>
+
+        <div class="join-container">
+            <!-- 故事讲述者 -->
+            <div class="join-card">
+                <i class="fas fa-microphone"></i>
+                <h3>故事讲述者</h3>
+                <p>如果你了解乡土文化、熟悉非遗技艺，或是有属于自己的原生文化故事，愿意分享那些藏在岁月里的温暖与热爱，欢迎成为我们的故事讲述者，让你的讲述，被更多人听见。</p>
+                <a href="#contact" class="btn">我要讲述</a>
+            </div>
+
+            <!-- AI制作者 -->
+            <div class="join-card">
+                <i class="fas fa-laptop-code"></i>
+                <h3>AI数字制作者</h3>
+                <p>如果你擅长AI数字人制作、短视频剪辑、数字内容创意，愿意用技术为文化赋能，将平凡的故事化为生动的数字光影，欢迎加入我们，用技术守护文化之美。</p>
+                <a href="#contact" class="btn">加入制作</a>
+            </div>
+
+            <!-- 商务合作 -->
+            <div class="join-card">
+                <i class="fas fa-handshake-alt"></i>
+                <h3>商务合作者</h3>
+                <p>如果你与我们有着相同的文化初心，无论是文化机构、公益组织，还是愿意助力文化传播的企业，欢迎与我们携手，以多元形式共建文化传播之路，让原生文化走得更远。</p>
+                <a href="#contact" class="btn">洽谈合作</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 核心业务流程（4大步骤） -->
+    <section class="services" id="services">
+        <h2 class="section-title">文化数字生长的完整旅程</h2>
+        <p class="section-desc">从大众共创的原生故事，到数字技术的创意转化，再到主流平台的温暖传播，最后落地乡村的文化共建，我们让每一步都生长出文化的温度</p>
+
+        <!-- 流程线 -->
+        <div class="process-line">
+            <div class="process-node"></div>
+            <div class="process-node"></div>
+            <div class="process-node"></div>
+            <div class="process-node"></div>
+        </div>
+
+        <div class="services-container">
+            <!-- 步骤1：大众共创故事采集 -->
+            <div class="service-card">
+                <h3><span class="service-step">1</span><i class="fas fa-comments"></i> 大众共创·故事采集</h3>
+                <p>我们敞开怀抱，邀每一位热爱乡土的人——村寨老人、非遗传承人、文化爱好者，一起分享藏在生活里的原生故事。这些带着烟火气的讲述，是文化最本真的模样，也是我们所有创作的起点。</p>
+                <a href="#contact" class="btn">我想分享故事</a>
+            </div>
+
+            <!-- 步骤2：数字技术创意转化 -->
+            <div class="service-card">
+                <h3><span class="service-step">2</span><i class="fas fa-robot"></i> 数字技术·创意转化</h3>
+                <p>我们将收集到的原生故事，用AI数字技术化为有温度的内容——或是短视频里的乡土叙事，或是数字人演绎的非遗传说，让文字与记忆，变成可看、可感、可传播的数字光影。</p>
+                <a href="#contact" class="btn">了解数字转化</a>
+            </div>
+
+            <!-- 步骤3：主流平台温暖传播 -->
+            <div class="service-card">
+                <h3><span class="service-step">3</span><i class="fas fa-video"></i> 主流平台·温暖传播</h3>
+                <p>我们把这些数字内容，带到主流大众媒体平台，不追求流量的喧嚣，只希望让藏在深山的文化，被屏幕前的你看见、记住、喜欢。每一次播放，都是一次文化的温柔相遇。</p>
+                <a href="#light" class="btn">查看传播合集</a>
+            </div>
+
+            <!-- 步骤4：乡村落地文化共建 -->
+            <div class="service-card">
+                <h3><span class="service-step">4</span><i class="fas fa-handshake"></i> 乡村落地·文化共建</h3>
+                <p>传播不是终点，我们带着平台的温度回到乡村，与当地共建文化课堂、品牌符号，让数字传播的热度，转化为乡村文化生长的力量，让文化真正扎根、生长。</p>
+                <a href="#build" class="btn">走进乡村共建</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 拓展模块1：原语·光影集（主流平台视频合集） -->
+    <section class="original-light" id="light">
+        <h2 class="module-title">原语·光影集</h2>
+        <p class="section-desc">这些散落在抖音、B站、快手的光影片段，是无数人共创的文化记忆，每一个视频，都藏着一方水土的温柔</p>
+
+        <div class="video-gallery">
+            <div class="video-card">
+                <img src="https://picsum.photos/id/1060/600/400" alt="苗寨口述故事" class="video-img">
+                <div class="video-info">
+                    <h4 class="video-title">苗寨阿婆的百鸟衣传说 | 数字人演绎</h4>
+                    <p class="video-desc">来自贵州黔东南的苗寨阿婆口述百鸟衣的由来，我们用数字人技术还原这段温暖的非遗传说，在抖音收获数万次温柔的观看。</p>
+                </div>
+            </div>
+
+            <div class="video-card">
+                <img src="https://picsum.photos/id/1070/600/400" alt="侗族大歌" class="video-img">
+                <div class="video-info">
+                    <h4 class="video-title">深山里的侗族大歌 | 原声录制+数字剪辑</h4>
+                    <p class="video-desc">走进广西三江侗寨，录制侗族大歌的原生合唱，用数字剪辑保留最本真的声音，在B站被网友称为「来自山野的天籁」。</p>
+                </div>
+            </div>
+
+            <div class="video-card">
+                <img src="https://picsum.photos/id/1080/600/400" alt="客家故事" class="video-img">
+                <div class="video-info">
+                    <h4 class="video-title">客家围龙屋的童年 | 大众共创故事</h4>
+                    <p class="video-desc">由客家网友共创的围龙屋童年故事，我们将其制作为动画短视频，在快手让更多人看见客家文化的温暖。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 拓展模块2：原语·知享会（论坛+公益课堂） -->
+    <section class="original-share" id="share">
+        <h2 class="module-title">原语·知享会</h2>
+        <p class="section-desc">我们相信，文化的生长需要交流与传承。于是我们搭建知享的桥梁，让传承人、专家、爱好者围坐一起，让知识与热爱双向奔赴</p>
+
+        <div class="forum-container">
+            <!-- 联合论坛 -->
+            <div class="forum-card">
+                <i class="fas fa-users"></i>
+                <h3>原生文化联合论坛</h3>
+                <p>邀非遗传承人、文化学者、乡村讲述者、数字创作者围坐一堂，不谈功利，只聊文化的传承与创新。我们已在贵州、云南、浙江举办多场论坛，让不同视角的思考，碰撞出文化生长的火花。</p>
+                <a href="#contact" class="btn">参与论坛</a>
+            </div>
+
+            <!-- 公益课堂 -->
+            <div class="forum-card">
+                <i class="fas fa-chalkboard-teacher"></i>
+                <h3>乡土文化公益课堂</h3>
+                <p>把课堂搬进村寨、社区，由传承人教手艺，由我们教数字内容创作，让乡村的孩子看见本土文化的美，让城市的朋友读懂乡土的故事，每一堂课，都是文化的种子。</p>
+                <a href="#contact" class="btn">参与课堂</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 拓展模块3：原语·乡筑记（线下乡村品牌共建） -->
+    <section class="original-build" id="build">
+        <h2 class="module-title">原语·乡筑记</h2>
+        <p class="section-desc">我们走出屏幕，回到山野，与乡村一起打造属于自己的文化符号，让数字传播的温度，落地为乡村生长的力量</p>
+
+        <div class="village-container">
+            <div class="village-card">
+                <img src="https://picsum.photos/id/1044/600/400" alt="贵州苗寨" class="village-img">
+                <div class="village-info">
+                    <h4 class="village-title">贵州黔东南苗寨 · 文化符号共建</h4>
+                    <p class="village-desc">与苗寨村民一起，提炼百鸟衣、苗绣的文化元素，打造属于村寨的视觉符号，印在村民的手工艺品上，也藏在数字视频的画面里，让文化符号成为村寨的名片。</p>
+                </div>
+            </div>
+
+            <div class="village-card">
+                <img src="https://picsum.photos/id/1050/600/400" alt="浙江竹编村" class="village-img">
+                <div class="village-info">
+                    <h4 class="village-title">浙江竹编村 · 手艺体验空间</h4>
+                    <p class="village-desc">与竹编非遗村共建「指尖竹语」体验空间，让游客亲手体验竹编技艺，我们用数字视频记录每一位体验者的作品，让手艺的温度，既在指尖，也在屏幕。</p>
+                </div>
+            </div>
+
+            <div class="village-card">
+                <img src="https://picsum.photos/id/1055/600/400" alt="云南侗寨" class="village-img">
+                <div class="village-info">
+                    <h4 class="village-title">云南侗寨 · 故事墙共建</h4>
+                    <p class="village-desc">收集侗寨村民的口述故事，将其刻在村寨的文化墙上，同时转化为数字视频内容，让物理的墙与数字的屏幕，共同承载村寨的记忆。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 拓展模块4：原语·风物集（非遗/文化体验+非遗产品，各3个） -->
+    <section class="original-goods" id="goods">
+        <h2 class="module-title">原语·风物集</h2>
+        <p class="section-desc">这里没有买卖的喧嚣，只有文化的体验与传承。我们甄选非遗手作、文化活动、非遗产品，邀你走近它们，触摸文化最本真的模样</p>
+
+        <!-- 分类导航（新增非遗产品） -->
+        <div class="goods-categories">
+            <button class="category-btn active" data-category="all">全部体验</button>
+            <button class="category-btn" data-category="intangible">非遗手作体验</button>
+            <button class="category-btn" data-category="activity">乡土文化活动</button>
+            <button class="category-btn" data-category="product">非遗产品</button>
+        </div>
+
+        <!-- 商品/体验列表（各3个） -->
+        <div class="goods-list">
+            <!-- 非遗手作体验（3个） -->
+            <div class="goods-card" data-category="intangible">
+                <img src="https://picsum.photos/id/1062/600/400" alt="苗绣体验" class="goods-img">
+                <div class="goods-info">
+                    <h4 class="goods-title">贵州苗绣 · 指尖纹样体验</h4>
+                    <p class="goods-desc">由苗绣传承人指导，亲手绣制一枚苗绣小挂件，带走属于自己的乡土纹样。</p>
+                    <button class="experience-btn">预约体验</button>
+                </div>
+            </div>
+
+            <div class="goods-card" data-category="intangible">
+                <img src="https://picsum.photos/id/1064/600/400" alt="竹编体验" class="goods-img">
+                <div class="goods-info">
+                    <h4 class="goods-title">浙江竹编 · 小篮编织体验</h4>
+                    <p class="goods-desc">走进竹编村，用天然竹篾编织小收纳篮，感受手艺与自然的融合。</p>
+                    <button class="experience-btn">预约体验</button>
+                </div>
+            </div>
+
+            <div class="goods-card" data-category="intangible">
+                <img src="https://picsum.photos/id/1065/600/400" alt="蜡染体验" class="goods-img">
+                <div class="goods-info">
+                    <h4 class="goods-title">贵州蜡染 · 布料染色体验</h4>
+                    <p class="goods-desc">用传统蜡染工艺，在布料上绘制乡土纹样，制作独一无二的文化手作。</p>
+                    <button class="experience-btn">预约体验</button>
+                </div>
+            </div>
+
+            <!-- 乡土文化活动（3个） -->
+            <div class="goods-card" data-category="activity">
+                <img src="https://picsum.photos/id/1072/600/400" alt="村超体验" class="goods-img">
+                <div class="goods-info">
+                    <h4 class="goods-title">贵州村超 · 乡村足球体验</h4>
+                    <p class="goods-desc">走进贵州榕江，体验乡村足球的热情，感受体育与乡土文化的融合。</p>
+                    <button class="experience-btn">预约参与</button>
+                </div>
+            </div>
+
+            <div class="goods-card" data-category="activity">
+                <img src="https://picsum.photos/id/1073/600/400" alt="泼水节" class="goods-img">
+                <div class="goods-info">
+                    <h4 class="goods-title">傣族泼水节 · 民俗体验</h4>
+                    <p class="goods-desc">参与傣族泼水节，体验祈福的快乐，感受民族节日的热闹与温暖。</p>
+                    <button class="experience-btn">预约参与</button>
+                </div>
+            </div>
+
+            <div class="goods-card" data-category="activity">
+                <img src="https://picsum.photos/id/1076/600/400" alt="昆曲体验" class="goods-img">
+                <div class="goods-info">
+                    <h4 class="goods-title">苏州昆曲 · 唱腔体验</h4>
+                    <p class="goods-desc">跟着昆曲演员学一段唱腔，体验中国传统戏曲的婉转之美。</p>
+                    <button class="experience-btn">预约体验</button>
+                </div>
+            </div>
+
+            <!-- 非遗产品（3个） -->
+            <div class="goods-card" data-category="product">
+                <img src="https://picsum.photos/id/1081/600/400" alt="苗绣挂件" class="goods-img">
+                <div class="goods-info">
+                    <h4 class="goods-title">苗绣非遗挂件 · 手工缝制</h4>
+                    <p class="goods-desc">由苗绣传承人手工缝制，萃取苗寨经典纹样，承载民族文化底蕴。</p>
+                    <button class="experience-btn">预约申领</button>
+                </div>
+            </div>
+
+            <div class="goods-card" data-category="product">
+                <img src="https://picsum.photos/id/1082/600/400" alt="竹编茶具" class="goods-img">
+                <div class="goods-info">
+                    <h4 class="goods-title">竹编非遗茶具 · 天然竹篾</h4>
+                    <p class="goods-desc">非遗竹编匠人纯手工制作，保留竹材天然纹理，兼具实用与文化收藏价值。</p>
+                    <button class="experience-btn">预约申领</button>
+                </div>
+            </div>
+
+            <div class="goods-card" data-category="product">
+                <img src="https://picsum.photos/id/1083/600/400" alt="蜡染方巾" class="goods-img">
+                <div class="goods-info">
+                    <h4 class="goods-title">蜡染非遗方巾 · 植物染色</h4>
+                    <p class="goods-desc">采用天然植物染料，传统蜡染工艺制作，每一方巾都是独一无二的文化载体。</p>
+                    <button class="experience-btn">预约申领</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 探索更多按钮 -->
+        <button class="explore-more">探索更多风物</button>
     </section>
 
     <!-- 合作板块 -->
     <section class="contact" id="contact">
-        <h2 class="section-title">合作联系</h2>
+        <h2 class="section-title">携手同行 · 让文化生长</h2>
         <div class="contact-card">
-            <h3>携手共建文化共富生态</h3>
+            <h3>如果你也热爱乡土文化，愿意一起共创、传播、共建</h3>
             <div class="contact-info">
-                <p><i class="fas fa-envelope"></i> 邮箱：contact@dongfangyuanyuan.com</p>
-                <p><i class="fas fa-phone"></i> 电话：400-XXXX-XXXX</p>
-                <p><i class="fas fa-map-marker-alt"></i> 地址：中国 · 文化创新产业园</p>
+                <p><i class="fas fa-envelope"></i> 邮箱：contact@dongfangyuanyu.com</p>
+                <p><i class="fas fa-phone"></i> 电话：400-3900-5030</p>
+                <p><i class="fas fa-map-marker-alt"></i> 地址：中国 · 传媒大学文化创新产业园</p>
             </div>
-            <a href="mailto:contact@dongfangyuanyuan.com" class="btn">发送合作意向</a>
+            <a href="mailto:contact@dongfangyuanyuan.com" class="btn">分享你的文化心愿</a>
         </div>
     </section>
 
     <!-- 页脚 -->
     <footer class="footer">
-        <div class="logo">东方原语文化科技</div>
-        <p>© 2026 东方原语文化科技有限公司 版权所有 | 让每一种原生文化都被世界听见</p>
+        <div class="logo">东方原语</div>
+        <p>© 2026 东方原语文化科技 · 让每一种原生文化都被世界听见 · 文化生长，温暖同行</p>
     </footer>
 
-    <!-- 简单的移动端菜单交互 -->
+    <!-- 交互脚本 -->
     <script>
         // 移动端菜单切换
-        const menuToggle = document.querySelector('.menu-toggle');
-        const navLinks = document.querySelector('.nav-links');
+        const menuToggle = document.getElementById('menuToggle');
+        const navLinks = document.getElementById('navLinks');
 
         menuToggle.addEventListener('click', () => {
-            navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
-            navLinks.style.flexDirection = 'column';
-            navLinks.style.position = 'absolute';
-            navLinks.style.top = '70px';
-            navLinks.style.right = '5%';
-            navLinks.style.background = var(--primary-color);
-            navLinks.style.padding = '1rem';
-            navLinks.style.borderRadius = '5px';
+            navLinks.classList.toggle('mobile-nav');
+        });
+
+        // 点击导航链接关闭移动端菜单
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                if (window.innerWidth <= 768) {
+                    navLinks.classList.remove('mobile-nav');
+                }
+            });
+        });
+
+        // 非遗/活动/产品分类切换
+        const categoryBtns = document.querySelectorAll('.category-btn');
+        const goodsCards = document.querySelectorAll('.goods-card');
+
+        categoryBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                // 切换激活状态
+                categoryBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+
+                const category = btn.getAttribute('data-category');
+                // 筛选商品
+                goodsCards.forEach(card => {
+                    if (category === 'all' || card.getAttribute('data-category') === category) {
+                        card.style.display = 'block';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            });
         });
 
         // 平滑滚动
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                const targetId = this.getAttribute('href');
+                document.querySelector(targetId).scrollIntoView({
                     behavior: 'smooth'
                 });
             });
         });
+
+        // 探索更多按钮点击事件（可自定义跳转逻辑）
+        const exploreBtn = document.querySelector('.explore-more');
+        exploreBtn.addEventListener('click', () => {
+            alert('更多风物内容正在更新中，敬请期待！');
+            // 可替换为实际跳转逻辑：window.location.href = 'more-goods.html';
+        });
     </script>
 </body>
-
 </html>
